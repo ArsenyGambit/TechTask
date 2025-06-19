@@ -1,0 +1,13 @@
+database:
+  host: localhost
+  port: 5432
+  user: postgres
+  password: password
+  dbname: news_db
+  sslmode: disable
+
+server:
+  grpc_port: 8080
+
+cache:
+  ttl: 5m 

@@ -1,0 +1,71 @@
+syntax = "proto3";
+
+package news;
+option go_package = "news-service/proto/news";
+
+service NewsService {
+    rpc CreateNews(CreateNewsRequest) returns (CreateNewsResponse);
+    rpc GetNews(GetNewsRequest) returns (GetNewsResponse);
+    rpc GetNewsList(GetNewsListRequest) returns (GetNewsListResponse);
+    rpc UpdateNews(UpdateNewsRequest) returns (UpdateNewsResponse);
+    rpc DeleteNews(DeleteNewsRequest) returns (DeleteNewsResponse);
+}
+
+message News {
+    string slug = 1;
+    string title = 2;
+    string content = 3;
+    int64 created_at = 4;
+    int64 updated_at = 5;
+}
+
+message CreateNewsRequest {
+    string slug = 1;
+    string title = 2;
+    string content = 3;
+}
+
+message CreateNewsResponse {
+    News news = 1;
+    string error = 2;
+}
+
+message GetNewsRequest {
+    string slug = 1;
+}
+
+message GetNewsResponse {
+    News news = 1;
+    string error = 2;
+}
+
+message GetNewsListRequest {
+    int32 page = 1;
+    int32 limit = 2;
+}
+
+message GetNewsListResponse {
+    repeated News news = 1;
+    int64 total = 2;
+    string error = 3;
+}
+
+message UpdateNewsRequest {
+    string slug = 1;
+    string title = 2;
+    string content = 3;
+}
+
+message UpdateNewsResponse {
+    News news = 1;
+    string error = 2;
+}
+
+message DeleteNewsRequest {
+    string slug = 1;
+}
+
+message DeleteNewsResponse {
+    bool success = 1;
+    string error = 2;
+} 
